@@ -34,6 +34,11 @@ PyPi project: [pypi.org/project/iotprovision](https://pypi.org/project/iotprovis
 
 # Release notes
 
+## Release v1.1.11
+
+Added:
+- provisioning to AWS custom account using JITR
+
 ## Initial release (v1.0.90)
 
 Support for:
