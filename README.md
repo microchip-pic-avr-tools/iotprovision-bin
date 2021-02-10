@@ -34,6 +34,13 @@ PyPi project: [pypi.org/project/iotprovision](https://pypi.org/project/iotprovis
 
 # Release notes
 
+## Release v1.4.0
+
+Added:
+- provisioning to AWS custom account using MAR
+- WINC FW upgrade
+- Azure provisioning (preliminary/alpha)
+
 ## Release v1.1.11
 
 Added:
