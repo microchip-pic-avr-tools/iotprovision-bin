@@ -34,6 +34,13 @@ PyPi project: [pypi.org/project/iotprovision](https://pypi.org/project/iotprovis
 
 # Release notes
 
+## Release v1.4.3
+
+Fixes:
+- Wildcard character correction in IoT Core policy creation
+- Failure on MacOS (Catalina)
+- Prevent re-generation of device certificate
+
 ## Release v1.4.0
 
 Added:
