@@ -30,3 +30,12 @@ pip install iotprovision
 ```
 
 PyPi project: [pypi.org/project/iotprovision](https://pypi.org/project/iotprovision/)
+
+
+# Release notes
+
+## Initial release (v1.0.90)
+
+Support for:
+- provisioning AVR-IoT and PIC-IoT kits to the Microchip sandbox account on AWS
+- provisioning AVR-IoT and PIC-IoT kits to the Microchip sandbox account on Google
