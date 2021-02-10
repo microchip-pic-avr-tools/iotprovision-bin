@@ -8,7 +8,7 @@ Supported kits:
 - PIC-IOT Wx
 
 ## Download
-Download the [latest release](https://github.com/xedbg/releasetest/releases/latest) and extract the binary from the zip file.
+Download the [latest release](https://github.com/microchip-pic-avr-tools/iotprovision-bin/releases/latest) and extract the binary from the zip file.
 
 ## Getting Started and Documentation
 
