@@ -12,7 +12,46 @@ Download the [latest release](https://github.com/microchip-pic-avr-tools/iotprov
 
 ## Getting Started and Documentation
 
-The zip file contains command-line executables for Windows®, macOS®, and Linux® operating systems bundled with all the firmware needed to complete the provisioning. Extract and use the command-line utility corresponding to your operating system. You will find more instructions for running the tool in iotprovision.md found in the root folder.
+The zip file contains command-line executables for Windows®, macOS®, and Linux® operating systems bundled with all the firmware needed to complete the provisioning. Extract and use the command-line utility corresponding to your operating system. You will find more instructions for running the tool in iotprovision.md in the root folder.
+
+### CLI usage
+Getting help:
+```
+iotprovision --help
+```
+Provision for Amazon Web Services, using Microchip sandbox account:
+```
+iotprovision -c aws -m sandbox
+```
+Provision for Amazon Web Services, using MAR and custom account:
+```
+iotprovision -c aws -m mar
+```
+Provision for Amazon Web Services, using JITR and custom account:
+```
+iotprovision -c aws -m jitr
+```
+Provision for Google Cloud Platform, using Microchip sandbox account:
+```
+iotprovision -c google -m sandbox
+```
+Provision for Microsoft Azure (preliminary - only kit provisioning):
+```
+iotprovision -c azure
+```
+The amount of logging is controlled by the -v/--verbose option:
+Possible log levels are `debug`, `info`, `warning`, `error`, `critical`.  Default is `info`.
+```
+iotprovision -v debug
+```
+Print version info and exit:
+```
+iotprovision -V
+```
+Print release info and exit:
+```
+iotprovision -R
+```
 
 ### Other Helpful Resources
 
