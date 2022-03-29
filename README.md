@@ -1,11 +1,12 @@
 [![MCHP](images/microchip.png)](https://www.microchip.com)
 
 # IoT Provisioning Tool binary releases
-Easy-to-use solution for configuring an AVR-IoT or PIC-IoT board to connect to Amazon Web Services (AWS), Google IoT Core Platforms and Microsoft Azure
+Easy-to-use solution for configuring an AVR-IoT, PIC-IoT or SAM-IoT board to connect to Amazon Web Services (AWS), Google IoT Core Platforms and Microsoft Azure
 
 Supported kits:
 - AVR-IOT Wx
 - PIC-IOT Wx
+- SAM-IOT WG
 
 ## Download
 Download the [latest release](https://github.com/microchip-pic-avr-tools/iotprovision-bin/releases/latest) and extract the binary from the zip file.
@@ -72,6 +73,11 @@ PyPi project: [pypi.org/project/iotprovision](https://pypi.org/project/iotprovis
 
 
 # Release notes
+
+## Release v2.7.1
+
+Added:
+- support for SAM-IoT provisioning
 
 ## Release v2.5.15
 
