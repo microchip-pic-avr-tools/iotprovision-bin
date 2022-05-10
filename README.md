@@ -4,9 +4,10 @@
 Easy-to-use solution for configuring an AVR-IoT, PIC-IoT or SAM-IoT board to connect to Amazon Web Services (AWS), Google IoT Core Platforms and Microsoft Azure
 
 Supported kits:
-- AVR-IOT Wx
-- PIC-IOT Wx
-- SAM-IOT WG
+- AVR-IoT Wx
+- PIC-IoT Wx
+- SAM-IoT WG
+- AVR-IoT Cellular Mini
 
 ## Download
 Download the [latest release](https://github.com/microchip-pic-avr-tools/iotprovision-bin/releases/latest) and extract the binary from the zip file.
@@ -73,6 +74,11 @@ PyPi project: [pypi.org/project/iotprovision](https://pypi.org/project/iotprovis
 
 
 # Release notes
+
+## Release v2.8.3
+
+Added:
+- support for AVR-IoT Cellular Mini kit
 
 ## Release v2.7.1
 
