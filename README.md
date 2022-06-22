@@ -75,6 +75,12 @@ PyPi project: [pypi.org/project/iotprovision](https://pypi.org/project/iotprovis
 
 # Release notes
 
+## Release v2.8.5
+This release is in sync with pypi release 2.8.5.191
+
+Changes:
+- updated Amazon root CA bundle (in pyawsutils)
+
 ## Release v2.8.3
 
 Added:
