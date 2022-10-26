@@ -1,7 +1,7 @@
 [![MCHP](images/microchip.png)](https://www.microchip.com)
 
 # IoT Provisioning Tool binary releases
-Easy-to-use solution for configuring an AVR-IoT, PIC-IoT or SAM-IoT board to connect to Amazon Web Services (AWS), Google IoT Core Platforms and Microsoft Azure
+Easy-to-use solution for configuring an AVR-IoT, PIC-IoT, SAM-IoT or AVR-IoT Cellular Mini board to connect to Amazon Web Services (AWS), Google IoT Core Platforms and Microsoft Azure
 
 Supported kits:
 - AVR-IoT Wx
@@ -19,40 +19,40 @@ The zip file contains command-line executables for Windows®, macOS®, and Linux
 ### CLI usage
 Getting help:
 ```
-iotprovision --help
+iotprovision-bin --help
 ```
 Provision for Amazon Web Services, using Microchip sandbox account:
 ```
-iotprovision -c aws -m sandbox
+iotprovision-bin -c aws -m sandbox
 ```
 Provision for Amazon Web Services, using MAR and custom account:
 ```
-iotprovision -c aws -m mar
+iotprovision-bin -c aws -m mar
 ```
 Provision for Amazon Web Services, using JITR and custom account:
 ```
-iotprovision -c aws -m jitr
+iotprovision-bin -c aws -m jitr
 ```
 Provision for Google Cloud Platform, using Microchip sandbox account:
 ```
-iotprovision -c google -m sandbox
+iotprovision-bin -c google -m sandbox
 ```
 Provision for Microsoft Azure (preliminary - only kit provisioning):
 ```
-iotprovision -c azure
+iotprovision-bin -c azure
 ```
 The amount of logging is controlled by the -v/--verbose option:
 Possible log levels are `debug`, `info`, `warning`, `error`, `critical`.  Default is `info`.
 ```
-iotprovision -v debug
+iotprovision-bin -v debug
 ```
 Print version info and exit:
 ```
-iotprovision -V
+iotprovision-bin -V
 ```
 Print release info and exit:
 ```
-iotprovision -R
+iotprovision-bin -R
 ```
 
 ### Other Helpful Resources
@@ -72,56 +72,53 @@ pip install iotprovision
 
 PyPi project: [pypi.org/project/iotprovision](https://pypi.org/project/iotprovision/)
 
+## Other uses of the binary distribution
 
-# Release notes
+When installing the iotprovision Python wheel as described in the previous section, all its dependencies will also be installed automatically. This includes other useful CLI programs like pymcuprog, pytrust, pysequans, etc. These will be directly available from the command line.
 
-## Release v2.8.5
-This release is in sync with pypi release 2.8.5.191
+When installing the iotprovision-bin binary, this does not seem to be the case. However, all these resources are actually present inside the binary, and starting with the iotprovision 2.10 release, they can be accessed in various ways, which are described below. The out-of-the-box behaviour of the binary named iotprovision-bin is to work exactly the same as the iotprovision Python wheel. This behaviour is referred to as the `iotprovision skin` of the binary. The remainder of this section describes ways of changing to other skins, to get access to other tools.
 
-Changes:
-- updated Amazon root CA bundle (in pyawsutils)
+Whenever the following subsections refer to renaming the executable file, the same effect can be accomplished by creating a symbolic link to the original file, or copying it. Shell aliases (Mac/Linux) will not work for this purpose.
 
-## Release v2.8.3
+### The mcu8tools skin
 
-Added:
-- support for AVR-IoT Cellular Mini kit
+This is the preferred skin for users wanting to use multiple tools frequently. It transforms the binary into a tool with all the bundled tools directly available as subcommands. To enable this, rename `iotprovision-bin[.exe]` to `mcu8tools[.exe]`. Invoking `mcu8tools` without arguments will list all the available subcommands. In this configuration, in order to use iotprovision to provision for AWS sandbox, you can do:
+```
+mcu8tools iotprovision -c aws -m sandbox
+```
+and to get help for our pymcuprog tool:
+```
+mcu8tools pymcuprog --help
+```
 
-## Release v2.7.1
+### Single-tool skins
 
-Added:
-- support for SAM-IoT provisioning
+iotprovision-bin is an example of a single-tool skin. The binary can be reconfigured to all of the included tools by means of renaming it to the desired tool. For example, renaming it to `pymcuprog[.exe]` will cause it to behave like the pymcuprog Python wheel.
 
-## Release v2.5.15
+### One-shot skin change
 
-Changes:
-- Full stack rebuild (v2)
-- Improved reliability of provisioning firmware startup
-- Improved and more consistent output (logging)
-- Cloud provider argument is now mandatory (AWS is no longer default)
-- Added Azure demo application (preliminary support: provisioning only)
-- Updated bundled debugger firmware
+If you only occasionally need to use a different tool, all single-tool configurations of the binary can be invoked with the `--skin` option to change skin temporarily, without need for renaming. This option must be the first argument present in the command line. Also note that this option can not be used to change neither to nor from the `mcu8tools` skin.
 
-## Release v1.4.3
+Example: User of iotprovision-bin needs to upgrade AVR-IoT Cellular Mini kit Sequans Monarch 2 firmware:
+```
+iotprovision-bin --skin=pysequans upgrade full
+```
 
-Fixes:
-- Wildcard character correction in IoT Core policy creation
-- Failure on MacOS (Catalina)
-- Prevent re-generation of device certificate
+### List of available tools
+As of release 2.10, these tools are available as installed packages when iotprovsion Python wheel is installed, and as subcommands/skins in the binary release:
 
-## Release v1.4.0
+- [pykitinfo](https://github.com/microchip-pic-avr-tools/pykitinfo) - List information about connected Microchip kits
+- [pymcuprog](https://github.com/microchip-pic-avr-tools/pymcuprog) - MCU programming tool for selected AVR, PIC and SAM devices
+- [pydebuggerupgrade](https://pypi.org/project/pydebuggerupgrade/) - Firmware upgrade utility for tools with DFU bootloader
+- [pydebuggerconfig](https://pypi.org/project/pydebuggerconfig/) - Access PKOB nano on-board debugger configuration
+- [pytrust](https://github.com/microchip-pic-avr-tools/pytrustplatform) - Command line interface for Microchip pytrustplatform
+- [pyawsutils](https://github.com/microchip-pic-avr-tools/pyawsutils) - AWS account management for IoT kits
+- [pyazureutils](https://github.com/microchip-pic-avr-tools/pyazureutils) - Azure account management for IoT kits
+- [pywinc](https://github.com/microchip-pic-avr-tools/iotprovision) - WINC firmware upgrader and utilities for WiFi IoT kits (part of iotprovision package)
+- [pysequans](https://pypi.org/project/pysequansutils/) - Firmware upgrader and utilities for the Sequans Monarch 2 platform in cellular kits
+- [iotprovision](https://github.com/microchip-pic-avr-tools/iotprovision) - Provisioning tool for IoT kits
+- [pyserial-miniterm](https://github.com/pyserial/pyserial) - Simple terminal program, from pyserial package
 
-Added:
-- provisioning to AWS custom account using MAR
-- WINC FW upgrade
-- Azure provisioning (preliminary/alpha)
-
-## Release v1.1.11
-
-Added:
-- provisioning to AWS custom account using JITR
-
-## Initial release (v1.0.90)
-
-Support for:
-- provisioning AVR-IoT and PIC-IoT kits to the Microchip sandbox account on AWS
-- provisioning AVR-IoT and PIC-IoT kits to the Microchip sandbox account on Google
+## Known issues
+-  -a AWS_PROFILE, --aws-profile AWS_PROFILE argument does not work, i.e. only the default profile works (DSG-5722 and DSG-5724)
+- Firmware upgrades for subsystems WINC, debugger, and Sequans Monarch 2 platform are handled inconsistently. WINC and debugger firmware will not be checked for upgrades unless explicitly requested by user, using arguments `wincupgrade` and `debuggerupgrade`, respectively, in which case firmware will be upgraded automatically. On the other hand, Sequans Monarch 2 firmware will be checked automatically by default, and user will be advised how to do the upgrade if needed. (DSG-5726)
